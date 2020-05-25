@@ -1,10 +1,30 @@
 function linearSearch(haystack, needle) {
+    for(let i=0; i<haystack.length; i++) {
+        if (haystack[i] === needle) {
+            return i
+        }
+    }
     return -1;
 }
 
 function binarySearch(haystack, needle) {
+    let end = haystack.length-1
+    let start = 0;
+    let step = 1;
+    if (haystack.includes(needle)) {
+        let mid = Math.floor((end + start)/2);
+        while (haystack[mid] !== needle) {
+            if (haystack[mid] > needle) {
+                end = mid-1;
+            } else {start = mid+1}
+            mid = Math.floor((end + start)/2);
+            step ++;
+        }
+        return step;
+    }
     return -1;
 }
+
 
 function getAverageSteps(maxNum, searchType, tries=100) {
     let haystack = Array.from(Array(maxNum).keys());
@@ -101,3 +121,4 @@ function stepByStep(points) {
 }
 
 stepByStep(5);
+
